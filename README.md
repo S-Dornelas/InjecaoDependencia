@@ -1,6 +1,5 @@
 # Injeção Dependência
 
-https://www.notion.so/Dominando-Inje-o-de-Depend-ncia-8f540c704fab48c88944625df558183c?pvs=4#9688e695293e45388046e5c639874a70
 
 *Não é um padrão (Design Pattern);
 *Técnica que implementa o IoC:
@@ -41,19 +40,20 @@ Há quatro modos de vida para um serviço que está sendo injetado:
 
 # DI, IoC e DIP na Prática.
 
+
 * 1 - Classe Abstrata:
+
 
 namespace Injecao_Dependencia.Models.Contracts
 {
     public interface IOperacao
     {
         Guid Id { get; set; }
-
     }
 }
 
-using Injecao_Dependencia.Models.Contracts;
 
+using Injecao_Dependencia.Models.Contracts;
 namespace Injecao_Independencia.Models
 {
     public class Operacao : IOperacao
@@ -63,19 +63,16 @@ namespace Injecao_Independencia.Models
         public Operacao()
         {
             Id = Guid.NewGuid();
-
         }
-
     }
-
 }
 
 
 * 2 - Criando dependência
 
+
 using Injecao_Dependencia.Models.Contracts;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Injecao_Dependencia.Controllers
 {
     public class HomeController : ControllerBase
@@ -95,9 +92,9 @@ namespace Injecao_Dependencia.Controllers
 
 * 3 - Implementando no Controller
 
+
 using Injecao_Dependencia.Models.Contracts;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Injecao_Dependencia.Controllers
 {
     public class HomeController : ControllerBase
@@ -105,14 +102,12 @@ namespace Injecao_Dependencia.Controllers
         private readonly IOperacao _operacao;
         private readonly IServiceProvider _provider;
 
-
         public HomeController(
             IOperacao operacao,
             IServiceProvider provider)
         {
             _operacao = operacao;
             _provider = provider;
-
         }
 
         [HttpGet("Construtor")] //criando ID com metodo construtor + utilizada
@@ -135,7 +130,9 @@ namespace Injecao_Dependencia.Controllers
     }
 }
 
+
 * 4 - Incluindo a ID no Program.
+
 
 using Injecao_Dependencia.Models;
 using Injecao_Dependencia.Models.Contracts;
@@ -151,8 +148,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    
-    app.UseHsts();
+        app.UseHsts();
 }
 
 app.UseHttpsRedirection();
