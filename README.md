@@ -33,7 +33,7 @@
 
 # V. AddScoped, AddTransient, AddSingleton
 
-Há quatro modos de vida para um serviço que está sendo injetado:
+Há três modos de vida para um serviço que está sendo injetado:
 1. Singleton : Um objeto do serviço é criado e fornecido para todas as requisições. Assim, todas as requisições obtém o mesmo objeto;
 2. Escoped : Um objeto do serviço é criado para cada requisição. Dessa forma, cada requisição obtém uma nova instância do serviço;
 3. Transient : Um objeto do serviço é criado toda a vez que um objeto for requisitado (Ex: 200).
